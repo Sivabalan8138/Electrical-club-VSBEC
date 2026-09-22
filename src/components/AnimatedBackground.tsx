@@ -81,10 +81,10 @@ export default function AnimatedBackground() {
       }
     }
 
-    const nodeCount = Math.floor((window.innerWidth * window.innerHeight) / 15000);
+    const nodeCount = Math.floor((window.innerWidth * window.innerHeight) / 25000); // Fewer nodes for better performance
     const nodes: Node[] = Array.from({ length: nodeCount }, () => new Node(canvas.width, canvas.height));
 
-    const maxDistance = 150;
+    const maxDistance = 120; // Shorter distance means fewer lines drawn
 
     let animationFrameId: number;
     const render = () => {

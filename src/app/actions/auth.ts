@@ -8,7 +8,7 @@ import { redirect } from "next/navigation"
 const prisma = new PrismaClient()
 
 export async function login(formData: FormData) {
-  const username = formData.get('username')?.toString()
+  const username = formData.get('username')?.toString().toLowerCase()
   const password = formData.get('password')?.toString()
 
   if (!username || !password) {
