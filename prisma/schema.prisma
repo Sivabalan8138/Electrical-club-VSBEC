@@ -1,0 +1,77 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Admin {
+  id            String   @id @default(uuid())
+  username      String   @unique
+  password_hash String
+  created_at    DateTime @default(now())
+}
+
+model Event {
+  id                    String         @id @default(uuid())
+  event_name            String
+  poster                String?
+  description           String
+  date                  String
+  start_time            String
+  end_time              String
+  venue                 String
+  team_size             Int
+  max_participants      Int
+  registration_start    DateTime
+  registration_deadline DateTime
+  rules                 String
+  status                String         // OPEN, CLOSED, FULL, UPCOMING, COMPLETED
+  created_at            DateTime       @default(now())
+  updated_at            DateTime       @updatedAt
+  registrations         Registration[]
+}
+
+model Registration {
+  id            String        @id @default(uuid())
+  event_id      String
+  event         Event         @relation(fields: [event_id], references: [id], onDelete: Cascade)
+  team_name     String?
+  registered_at DateTime      @default(now())
+  participants  Participant[]
+}
+
+model Participant {
+  id              String       @id @default(uuid())
+  registration_id String
+  registration    Registration @relation(fields: [registration_id], references: [id], onDelete: Cascade)
+  name            String
+  register_number String
+  department      String
+  year            String
+  section         String?
+  mobile_number   String
+  email           String?
+}
+
+model CompletedEvent {
+  id          String       @id @default(uuid())
+  event_name  String
+  event_date  String
+  venue       String
+  poster      String?
+  description String
+  highlights  String
+  created_at  DateTime     @default(now())
+  photos      EventPhoto[]
+}
+
+model EventPhoto {
+  id                 String         @id @default(uuid())
+  completed_event_id String
+  completed_event    CompletedEvent @relation(fields: [completed_event_id], references: [id], onDelete: Cascade)
+  image_url          String
+  uploaded_at        DateTime       @default(now())
+}

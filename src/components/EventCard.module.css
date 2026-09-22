@@ -1,0 +1,205 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  transition: transform 0.1s ease-out, box-shadow 0.2s ease;
+  transform-style: preserve-3d;
+}
+
+.card:hover {
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(14, 165, 233, 0.3);
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background-color: var(--surface-hover);
+  transform: translateZ(20px);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.noImage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  background: linear-gradient(135deg, var(--surface-color), var(--surface-hover));
+}
+
+.dateBadge {
+  position: absolute;
+  bottom: -15px;
+  left: 15px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--primary);
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  box-shadow: var(--shadow-md);
+  z-index: 2;
+}
+
+.dateBadge .day {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.dateBadge .month {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.statusBadge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: var(--surface-color);
+  color: var(--primary);
+  border: 1px solid var(--glass-border);
+  border-radius: 99px;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: var(--shadow-md);
+}
+
+.statusBadge.open { color: var(--success); }
+.statusBadge.closed { color: var(--error); }
+.statusBadge.full { color: var(--warning); }
+.statusBadge.upcoming { color: var(--info); }
+.statusBadge.completed { color: var(--text-secondary); }
+
+.content {
+  padding: 24px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.iconWrapper {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(14, 165, 233, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.infoLabel {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-right: 4px;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.btnDetails {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  background-color: transparent;
+  color: var(--primary);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  transition: var(--transition);
+}
+
+.btnDetails:hover {
+  background-color: rgba(14, 165, 233, 0.1);
+  border-color: var(--primary);
+}
+
+.btnRegister {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  background-color: var(--success);
+  color: white;
+  border: none;
+  transition: var(--transition);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+}
+
+.btnRegister:hover {
+  background-color: #059669; /* slightly darker green */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(16, 185, 129, 0.4);
+}
+
+.btnRegister:disabled, 
+.btnRegister.disabled {
+  background-color: var(--surface-hover);
+  color: var(--text-secondary);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}

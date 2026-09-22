@@ -1,0 +1,29 @@
+.loginLayout {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-color);
+  padding: 20px;
+}
+
+.adminLayout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+}
+
+.adminContent {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  margin-left: 250px;
+}
+
+@media (max-width: 768px) {
+  .adminContent {
+    margin-left: 0;
+    padding: 1rem;
+    padding-bottom: 80px; /* Space for mobile nav */
+  }
+}
