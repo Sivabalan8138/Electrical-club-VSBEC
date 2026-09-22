@@ -27,7 +27,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ i
   return (
     <div className={`container ${styles.detailsContainer}`}>
       <div className={`glass-card ${styles.detailsCard}`}>
-        {event.poster && (
+        {event.poster && event.poster !== 'null' && event.poster.trim() !== '' && (
           <div className={styles.posterContainer}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={event.poster} alt={event.event_name} className={styles.poster} />

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Link from 'next/link';
 import styles from './EventCard.module.css';
 
@@ -24,6 +24,7 @@ interface EventCardProps {
 
 export default function EventCard({ event, isCompleted = false }: EventCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const [imageError, setImageError] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -89,9 +90,14 @@ export default function EventCard({ event, isCompleted = false }: EventCardProps
       onMouseLeave={handleMouseLeave}
     >
       <div className={styles.imageWrapper}>
-        {event.poster ? (
+        {event.poster && event.poster !== 'null' && event.poster.trim() !== '' && !imageError ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={event.poster} alt={event.event_name} className={styles.image} />
+          <img 
+            src={event.poster} 
+            alt={event.event_name} 
+            className={styles.image}
+            onError={() => setImageError(true)}
+          />
         ) : (
           <div className={styles.noImage}>No Poster Available</div>
         )}
